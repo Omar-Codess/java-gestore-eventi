@@ -68,7 +68,7 @@ public class Evento {
         int userInput = 1;
         int postiDisponibili = postiTotali - postiPrenotati;
         if (postiPrenotati > postiDisponibili || data.isAfter(getData())){
-            throw new RuntimeException("Evento già passato o numero posti prenotati non disponibile");
+            throw new IllegalArgumentException("Evento già passato o numero posti prenotati non disponibile");
         } else {
             postiPrenotati += userInput;
         }

@@ -7,20 +7,16 @@ public class Evento {
 
 
     //CAMPI
-    private String titolo;
-    private LocalDate data;
+    public String titolo;
+    public LocalDate data;
     private int postiTotali;
     private int postiPrenotati;
-
-    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-
 
     //COSTRUTTORE
     public Evento(String titolo, LocalDate data, int postiTotali) {
         this.titolo = titolo;
 
         //controllo sulla data e formattazione
-        data.format(formatter);
         if (data.isBefore(LocalDate.now())){
             throw new IllegalArgumentException("Data non valida.");
         } else {
@@ -85,12 +81,17 @@ public class Evento {
         }
     }
 
+
+
+
     //override toString()
     @Override
     public String toString() {
-        return "Evento{" +
-                "data='" + data + '\'' +
-                ", titolo=" + titolo +
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+
+        return "Evento{"
+                 + data.format(formatter) + " " + '-' + " " +
+                  titolo +
                 '}';
     }
 }

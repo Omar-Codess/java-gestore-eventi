@@ -1,4 +1,6 @@
 package org.lessons.java.gestore.eventi;
+import java.math.BigDecimal;
+import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 
 import java.time.LocalDate;
@@ -11,7 +13,8 @@ public class Main {
         System.out.println("titolo: ");
         String userTitolo = scan.nextLine();
         System.out.println("data: ");
-        LocalDate userData = LocalDate.parse(scan.nextLine());
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        LocalDate userData = LocalDate.parse(scan.nextLine(), formatter);
         System.out.println("posti totali: ");
         int userPostiTot = Integer.parseInt(scan.nextLine());
 
@@ -62,7 +65,11 @@ public class Main {
             }
         } while (userChoice != 3);
 
+        System.out.println(evento.toString());
         System.out.println("Arrivederci!");
+
+        Evento concerto = new Concerto(userTitolo, userData, userPostiTot, LocalTime.of(17, 35), new BigDecimal(155));
+        System.out.println(concerto.toString());
     }
 
 }

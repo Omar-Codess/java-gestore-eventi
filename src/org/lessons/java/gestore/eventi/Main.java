@@ -23,24 +23,25 @@ public class Main {
         System.out.println("Menu: 1-prenota, 2-disdici, 3-esci");
         int userChoice = Integer.parseInt(scan.nextLine());
 
+
         do {
+
             switch (userChoice) {
                 case 1:
                     System.out.println("Quanti posti vuoi prenotare?");
                     int userPrenotazione = Integer.parseInt(scan.nextLine());
+
                     try {
                         for (int i = 0; i < userPrenotazione; i++) {
                             System.out.println("Posto prenotato numero: " + i);
-                            evento.prenota();
                         }
-                        System.out.println("Posti ancora disponibili: " + (userPostiTot - userPrenotazione));
+                        evento.prenota();
+                        System.out.println("Posti ancora disponibili: " + (evento.getPostiTotali() - userPrenotazione));
                     } catch (IllegalArgumentException e) {
                         System.out.println(e.getMessage());
-                        System.out.println("Posti ancora disponibili: " + userPostiTot);
                     }
                     System.out.println(evento.toString());
-
-                    System.out.println("Menu: 1-prenota, 2-disdici, 3-esci");
+                    System.out.println("Menu: 2-disdici, 3-esci");
                     userChoice = Integer.parseInt(scan.nextLine());
                     break;
 
@@ -50,16 +51,14 @@ public class Main {
                     try {
                         for (int i = 0; i < userCancellazioni; i++) {
                             System.out.println("Posto cancellato numero: " + i);
-                            evento.disdici();
                         }
-                        System.out.println("Posti ancora disponibili: " + (userPostiTot - userCancellazioni));
+                        evento.disdici();
+                        System.out.println("Posti ancora disponibili: " + (evento.getPostiTotali() - userCancellazioni));
                     } catch (IllegalArgumentException e) {
                         System.out.println(e.getMessage());
-                        System.out.println("Posti ancora disponibili: " + userPostiTot);
                     }
                     System.out.println(evento.toString());
-                    System.out.println("Posti ancora disponibili: " + (evento.getPostiTotali() - userCancellazioni));
-                    System.out.println("Menu: 1-prenota, 2-disdici, 3-esci");
+                    System.out.println("Menu: 3-esci");
                     userChoice = Integer.parseInt(scan.nextLine());
                     break;
             }
@@ -68,6 +67,7 @@ public class Main {
         System.out.println(evento.toString());
         System.out.println("Arrivederci!");
 
+        //TEST
         Evento concerto = new Concerto(userTitolo, userData, userPostiTot, LocalTime.of(17, 35), new BigDecimal(155));
         System.out.println(concerto.toString());
     }

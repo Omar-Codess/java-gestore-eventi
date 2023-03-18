@@ -74,8 +74,8 @@ public class Evento {
     public void disdici(){
         int userInput = 1;
         int postiDisponibili = postiTotali - postiPrenotati;
-        if (data.isAfter(getData()) || postiPrenotati == 0){
-            throw new RuntimeException("Evento già passato o prenotazioni non presenti");
+        if (data.isAfter(getData()) || postiPrenotati <= 0){
+            throw new IllegalArgumentException("Evento già passato o prenotazioni non presenti");
         } else {
             postiPrenotati -= userInput;
         }
